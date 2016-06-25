@@ -1,8 +1,5 @@
 (load-file "~/.emacs.d/python/python-settings.el")
 
-(require 'cask "~/emacs/cask/.cask/24.5.1/elpa/cask-20151123.528/cask.el")
-(cask-initialize)
-
 ;; show time on status bar
 (display-time)
 
