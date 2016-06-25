@@ -1,0 +1,63 @@
+(load-file "~/.emacs.d/python/python-settings.el")
+
+(require 'cask "~/emacs/cask/.cask/24.5.1/elpa/cask-20151123.528/cask.el")
+(cask-initialize)
+
+;; show time on status bar
+(display-time)
+
+;; show matched bracket
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+
+;; rainbow delimiters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;delete whole line
+(setq kill-whole-line t)
+
+; Copy Line Command
+(defun copy-line (n)
+    "Copy N lines at point to the kill-ring."
+    (interactive "p")
+    (kill-ring-save (line-beginning-position) (line-beginning-position (1+ n))))
+
+(global-set-key "\C-c\C-y" 'copy-line)
+
+;; load theme monokai
+(load-theme 'monokai t)
+
+;; Emacs-neotree
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(global-set-key [f8] 'neotree-toggle)
+
+;; set indent 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq c-basic-offset 4)
+(setq python-indent-offset 4)
+
+;; VIM's 'o' and 'O'
+;; newline-without-break-of-line
+(defun newline-without-break-of-line ()
+  "Insert a newline below the current line and put point at beginning."
+  (interactive)
+  (unless (eolp)
+    (end-of-line))
+  (newline-and-indent))
+
+(defun newline-without-break-of-line-above ()
+  "Insert a newline above the current line and put point at beginning."
+  (interactive)
+  (unless (bolp)
+    (beginning-of-line))
+  (newline)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(global-set-key (kbd "<C-return>") 'newline-without-break-of-line)
+(global-set-key (kbd "<M-return>") 'newline-without-break-of-line-above)
+
+;; frame size
+(add-to-list 'default-frame-alist '(height . 150))
+(add-to-list 'default-frame-alist '(width .85))

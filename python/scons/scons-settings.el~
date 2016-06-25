@@ -1,0 +1,12 @@
+(defun my-c-mode()
+  (interactive)
+  (c-mode)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode nil))
+
+(add-to-list 'auto-mode-alist '("SConstruct" . my-c-mode))
+(add-to-list 'auto-mode-alist '("SConscript" . my-c-mode))
+
+
+
+
