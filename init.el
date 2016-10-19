@@ -1,5 +1,3 @@
-(load-file "~/.emacs.d/python/python-settings.el")
-
 ;; show time on status bar
 (display-time)
 
@@ -21,12 +19,14 @@
 
 (global-set-key "\C-c\C-y" 'copy-line)
 
-;; load theme monokai
-(load-theme 'monokai t)
-
 ;; Emacs-neotree
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (global-set-key [f8] 'neotree-toggle)
+
+;; load theme monokai
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
 
 ;; set indent 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -57,3 +57,6 @@
 ;; frame size
 (add-to-list 'default-frame-alist '(height . 150))
 (add-to-list 'default-frame-alist '(width .85))
+
+;; linum setting
+(global-linum-mode 1)
