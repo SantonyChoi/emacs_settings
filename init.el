@@ -44,9 +44,11 @@
 (load-theme 'monokai t)
 
 ;; set indent 4 spaces
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq c-basic-offset 4)
+(setq-default c-basic-offset 4
+              tab-width 4
+              indent-tabs-mode t)
+;;(setq-default tab-width 4)
+;;(setq c-basic-offset 4)
 
 ;; VIM's 'o' and 'O'
 ;; newline-without-break-of-line
@@ -77,4 +79,17 @@
 (global-linum-mode 1)
 
 ;; window move
-(windmove-default-keybindings 'meta)
+;;(windmove-default-keybindings 'meta)
+
+;; mouse scroll
+;; 마우스 스크롤 사이즈
+(setq mouse-wheel-scroll-amount '(3))
+
+;; 마우스 스크롤 가속 없애기
+(setq mouse-wheel-progressive-speed nil)
+
+;; 키보드 한 줄씩 스크롤
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; before-save-hook
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
