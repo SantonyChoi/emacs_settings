@@ -36,6 +36,8 @@
 
 ;; Emacs-neotree
 (require 'package)
+(setq package-enable-at-startup nil)
+(package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (global-set-key [f8] 'neotree-toggle)
 
@@ -93,3 +95,13 @@
 
 ;; before-save-hook
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; activate Auto-complete
+(require 'auto-complete)
+;; dirty fix for having AC everywhere
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
