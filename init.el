@@ -6,7 +6,6 @@
 (setq show-paren-delay 0)
 
 
-
 ;;delete whole line
 (setq kill-whole-line t)
 
